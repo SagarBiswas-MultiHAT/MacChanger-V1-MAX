@@ -2,10 +2,17 @@
 
 Linux MAC address management with safe backup/restore, strict validation, and automation-ready CLI behavior.
 
+<div align="right">
+
 [![CI](https://github.com/SagarBiswas-MultiHAT/MacChanger-V1-MAX/actions/workflows/ci.yml/badge.svg)](https://github.com/SagarBiswas-MultiHAT/MacChanger-V1-MAX/actions/workflows/ci.yml)
+&nbsp;
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+&nbsp;
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+&nbsp;
 [![Version](https://img.shields.io/badge/version-1.0.0-black.svg)](CHANGELOG.md)
+
+</div>
 
 ## Overview
 
@@ -14,6 +21,52 @@ It lets you inspect, set, randomize, and restore MAC addresses while preserving 
 
 This project is for engineers, students, and security practitioners who need predictable networking behavior in labs or authorized administration workflows.  
 The CLI is designed for both interactive use and script automation, with clear errors, stable exit codes, and a testable architecture.
+
+### Output/Testing
+
+```
+┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
+└─# macchanger-pro --list
+Interfaces and MACs:
+  eth0: 00:15:5d:45:60:8f
+
+┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
+└─# macchanger-pro -i eth0 --show
+eth0 current MAC: 00:15:5d:45:60:8f
+
+┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
+└─# macchanger-pro -i eth0 --set aa:bb:cc:dd:ee:ff
+Apply MAC aa:bb:cc:dd:ee:ff to interface eth0? [y/N]: Y
+2026-02-24 23:01:12,739 [INFO] Setting MAC for eth0 -> aa:bb:cc:dd:ee:ff
+MAC successfully changed for eth0. New MAC: aa:bb:cc:dd:ee:ff
+2026-02-24 23:01:12,860 [INFO] Operation completed.
+
+┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
+└─# macchanger-pro -i eth0 --show
+eth0 current MAC: aa:bb:cc:dd:ee:ff
+
+┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
+└─# macchanger-pro -i eth0 --random
+Apply MAC 56:7a:46:19:fc:bc to interface eth0? [y/N]: Y
+2026-02-24 23:01:29,282 [INFO] Setting MAC for eth0 -> 56:7a:46:19:fc:bc
+MAC successfully changed for eth0. New MAC: 56:7a:46:19:fc:bc
+2026-02-24 23:01:29,314 [INFO] Operation completed.
+
+┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
+└─# macchanger-pro -i eth0 --show
+eth0 current MAC: 56:7a:46:19:fc:bc
+
+┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
+└─# macchanger-pro -i eth0 --restore
+Restore original MAC for eth0? [y/N]: y
+2026-02-24 23:01:41,304 [INFO] Restoring MAC for eth0 -> 00:15:5d:45:60:8f
+Restored original MAC for eth0. Current: 00:15:5d:45:60:8f
+
+┌──(.venv)(root㉿HP-SAGAR)-[/mnt/h/updatedReposV1/updatedReposV2/MacChanger-V1-Max]      
+└─# macchanger-pro -i eth0 --show
+eth0 current MAC: 00:15:5d:45:60:8f
+```
+
 
 ## Features
 
