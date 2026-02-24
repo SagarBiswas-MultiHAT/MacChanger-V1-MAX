@@ -2,7 +2,7 @@
 
 Linux MAC address management with safe backup/restore, strict validation, and automation-ready CLI behavior.
 
-[![CI](https://github.com/SagarBiswas-MultiHAT/MacChanger-V1-Max/actions/workflows/ci.yml/badge.svg)](https://github.com/SagarBiswas-MultiHAT/MacChanger-V1-Max/actions/workflows/ci.yml)
+[![CI](https://github.com/SagarBiswas-MultiHAT/MacChanger-V1-MAX/actions/workflows/ci.yml/badge.svg)](https://github.com/SagarBiswas-MultiHAT/MacChanger-V1-MAX/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Version](https://img.shields.io/badge/version-1.0.0-black.svg)](CHANGELOG.md)
@@ -42,8 +42,8 @@ Screenshots coming soon.
 ### Installation
 
 ```bash
-git clone https://github.com/SagarBiswas-MultiHAT/MacChanger-V1-Max.git
-cd MacChanger-V1-Max
+git clone https://github.com/SagarBiswas-MultiHAT/MacChanger-V1-MAX.git
+cd MacChanger-V1-MAX
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -79,7 +79,7 @@ Shows the current MAC without modifying the interface.
 ### 3) Set an explicit MAC
 
 ```bash
-sudo macchanger-pro -i eth0 --set aa:bb:cc:dd:ee:ff
+macchanger-pro -i eth0 --set aa:bb:cc:dd:ee:ff
 ```
 
 Validates format, writes a one-time backup of the original MAC, then applies the new address.
@@ -87,7 +87,7 @@ Validates format, writes a one-time backup of the original MAC, then applies the
 ### 4) Apply a random standards-correct MAC
 
 ```bash
-sudo macchanger-pro -i eth0 --random
+macchanger-pro -i eth0 --random
 ```
 
 Generates and applies a locally administered unicast MAC suitable for privacy/lab workflows.
@@ -95,7 +95,7 @@ Generates and applies a locally administered unicast MAC suitable for privacy/la
 ### 5) Restore the original hardware MAC
 
 ```bash
-sudo macchanger-pro -i eth0 --restore
+macchanger-pro -i eth0 --restore
 ```
 
 Loads the saved backup and re-applies it.
@@ -108,10 +108,27 @@ python macchanger_pro.py --help
 
 The top-level script remains available for existing workflows.
 
+### 7) If `sudo macchanger-pro` says "command not found"
+
+Some Linux environments reset `PATH` under `sudo`, so virtualenv-installed commands are not visible.
+
+Use one of these options:
+
+```bash
+# Option A: run as root shell (no sudo prefix needed)
+macchanger-pro -i eth0 --random
+
+# Option B: sudo with absolute command path
+sudo "$(command -v macchanger-pro)" -i eth0 --random
+
+# Option C: compatibility wrapper
+sudo python macchanger_pro.py -i eth0 --random
+```
+
 ## Project Structure
 
 ```text
-MacChanger-V1-Max/
+MacChanger-V1-MAX/
 |-- .github/
 |   |-- workflows/ci.yml                # CI pipeline: lint -> test -> build -> audit
 |   |-- ISSUE_TEMPLATE/                 # Bug/feature templates
